@@ -2,8 +2,13 @@
   "colors" : [
     {
       "color" : {
-        "platform" : "universal",
-        "reference" : "systemGreenColor"
+        "color-space" : "srgb",
+        "components" : {
+          "alpha" : "1.000",
+          "blue" : "0x09",
+          "green" : "0x09",
+          "red" : "0x0A"
+        }
       },
       "idiom" : "universal"
     },
@@ -15,8 +20,11 @@
         }
       ],
       "color" : {
-        "platform" : "universal",
-        "reference" : "systemGreenColor"
+        "color-space" : "extended-gray",
+        "components" : {
+          "alpha" : "1.000",
+          "white" : "0xFA"
+        }
       },
       "idiom" : "universal"
     }
