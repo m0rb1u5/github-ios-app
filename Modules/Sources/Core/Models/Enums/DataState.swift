@@ -1,7 +1,7 @@
 public enum DataState<K> {
     case loading
     case loaded(K)
-    case error(DVError)
+    case error(GHError)
 
     public var data: K? {
         switch self {

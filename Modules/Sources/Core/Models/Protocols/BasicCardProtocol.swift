@@ -1,6 +1,7 @@
 import Foundation
 
 public protocol BasicCardProtocol {
-    var id: String { get }
+    var id: Int { get }
     var title: String { get }
+    var avatarUrl: URL { get }
 }

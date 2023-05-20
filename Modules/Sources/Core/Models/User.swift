@@ -1,6 +1,6 @@
 import Foundation
 
-public struct User: Equatable, Hashable, Decodable, Identifiable {
+public struct User: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiable {
     // MARK: - Basic User Properties
     public let name: String?
     public let email: String?
@@ -40,8 +40,8 @@ public struct User: Equatable, Hashable, Decodable, Identifiable {
     public let ldapDn: String?
 
     public var title: String {
-        if let name {
-            if let company {
+        if let name: String {
+            if let company: String {
                 return name + " (" + company + ")"
             }
             return name
@@ -159,7 +159,7 @@ public extension User {
         name: String? = "Linus Torvalds",
         email: String? = nil,
         login: String = "torvalds",
-        id: Int = 1024025,
+        id: Int = 1_024_025,
         nodeId: String = "MDQ6VXNlcjEwMjQwMjU",
         avatarUrl: URL = URL(string: "https://avatars.githubusercontent.com/u/1024025?v=4") ?? URL(fileURLWithPath: ""),
         gravatarId: String? = "",
@@ -174,7 +174,7 @@ public extension User {
         twitterUsername: String? = nil,
         publicRepos: Int? = 7,
         publicGists: Int? = 0,
-        followers: Int? = 183027,
+        followers: Int? = 183_027,
         following: Int? = 0,
         createdAt: Date? = "2011-09-03T15:26:22Z".toDate,
         updatedAt: Date? = "2023-01-02T22:41:59Z".toDate,
@@ -263,7 +263,6 @@ public extension User {
                 avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/5?v=4") ?? URL(fileURLWithPath: ""),
                 htmlUrl: URL(string: "https://github.com/ezmobius") ?? URL(fileURLWithPath: "")
             )
-
         ]
     }
 }

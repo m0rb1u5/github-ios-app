@@ -3,7 +3,7 @@ import Foundation
 public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiable {
     // MARK: - Basic Org Properties
     public let login: String
-    public let orgId: Int
+    public let id: Int
     public let nodeId: String
     public let avatarUrl: URL
     public let description: String?
@@ -27,13 +27,9 @@ public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiab
     public let updatedAt: Date?
     public let type: String?
 
-    public var id: String {
-        String(orgId)
-    }
-
     public var title: String {
-        if let name {
-            if let company {
+        if let name: String {
+            if let company: String {
                 return name + " (" + company + ")"
             }
             return name
@@ -43,7 +39,7 @@ public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiab
 
     public enum CodingKeys: String, CodingKey {
         case login
-        case orgId = "id"
+        case id
         case nodeId = "node_id"
         case avatarUrl = "avatar_url"
         case description
@@ -68,7 +64,7 @@ public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiab
 
     public init(
         login: String,
-        orgId: Int,
+        id: Int,
         nodeId: String,
         avatarUrl: URL,
         description: String? = nil,
@@ -91,7 +87,7 @@ public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiab
         type: String? = nil
     ) {
         self.login = login
-        self.orgId = orgId
+        self.id = id
         self.nodeId = nodeId
         self.avatarUrl = avatarUrl
         self.description = description
@@ -119,7 +115,7 @@ public struct Org: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiab
 public extension Org {
     static func mock(
         login: String = "engineyard",
-        orgId: Int = 81,
+        id: Int = 81,
         nodeId: String = "MDEyOk9yZ2FuaXphdGlvbjgx",
         avatarUrl: URL = URL(string: "https://avatars.githubusercontent.com/u/81?v=4") ?? URL(fileURLWithPath: ""),
         description: String? = nil,
@@ -143,7 +139,7 @@ public extension Org {
     ) -> Self {
         .init(
             login: login,
-            orgId: orgId,
+            id: id,
             nodeId: nodeId,
             avatarUrl: avatarUrl,
             description: description,
@@ -165,6 +161,37 @@ public extension Org {
             updatedAt: updatedAt,
             type: type
         )
+    }
+
+    static func mockOrgs() -> [Self] {
+        [
+            .mock(),
+            .mock(
+                login: "ministrycentered",
+                id: 119,
+                nodeId: "MDEyOk9yZ2FuaXphdGlvbjExOQ==",
+                avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/119?v=4") ?? URL(fileURLWithPath: "")
+            ),
+            .mock(
+                login: "collectiveidea",
+                id: 128,
+                nodeId: "MDEyOk9yZ2FuaXphdGlvbjEyOA==",
+                avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/128?v=4") ?? URL(fileURLWithPath: ""),
+                description: "We build software to solve real problems."
+            ),
+            .mock(
+                login: "ogc",
+                id: 144,
+                nodeId: "MDEyOk9yZ2FuaXphdGlvbjE0NA==",
+                avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/144?v=4") ?? URL(fileURLWithPath: "")
+            ),
+            .mock(
+                login: "sevenwire",
+                id: 150,
+                nodeId: "MDEyOk9yZ2FuaXphdGlvbjE1MA==",
+                avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/150?v=4") ?? URL(fileURLWithPath: "")
+            )
+        ]
     }
 }
 #endif

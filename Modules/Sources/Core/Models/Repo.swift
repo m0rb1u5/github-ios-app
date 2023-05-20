@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Repo: Equatable, Hashable, Decodable, Identifiable {
+public struct Repo: BasicCardProtocol, Equatable, Hashable, Decodable, Identifiable {
     // MARK: - Basic Repo Properties
     public let id: Int
     public let nodeId: String
@@ -52,6 +52,10 @@ public struct Repo: Equatable, Hashable, Decodable, Identifiable {
 
     public var title: String {
         fullName
+    }
+
+    public var avatarUrl: URL {
+        owner.avatarUrl
     }
 
     public enum CodingKeys: String, CodingKey {
@@ -218,10 +222,10 @@ public extension Repo {
         sshUrl: URL? = URL(string: "git@github.com:mojombo/grit.git"),
         cloneUrl: URL? = URL(string: "https://github.com/mojombo/grit.git"),
         svnUrl: URL? = URL(string: "https://github.com/mojombo/grit"),
-        homepage: URL? = URL(string:  "http://grit.rubyforge.org/"),
-        size: Int? = 7954,
-        stargazersCount: Int? = 1964,
-        watchersCount: Int? = 1964,
+        homepage: URL? = URL(string: "http://grit.rubyforge.org/"),
+        size: Int? = 7_954,
+        stargazersCount: Int? = 1_964,
+        watchersCount: Int? = 1_964,
         language: String? = "Ruby",
         hasIssues: Bool? = true,
         hasProjects: Bool? = true,
@@ -242,7 +246,7 @@ public extension Repo {
         visibility: String? = "public",
         forks: Int? = 536,
         openIssues: Int? = 30,
-        watchers: Int? = 1964,
+        watchers: Int? = 1_964,
         defaultBranch: String? = "master",
         tempCloneToken: String? = nil,
         networkCount: Int? = 536,
@@ -295,6 +299,45 @@ public extension Repo {
             networkCount: networkCount,
             subscribersCount: subscribersCount
         )
+    }
+
+    static func mockRepos() -> [Self] {
+        [
+            .mock(),
+            .mock(
+                id: 26,
+                nodeId: "MDEwOlJlcG9zaXRvcnkyNg==",
+                name: "merb-core",
+                fullName: "wycats/merb-core",
+                isPrivate: false,
+                owner: .mock(
+                    login: "mojombo",
+                    id: 1,
+                    nodeId: "MDQ6VXNlcjE=",
+                    avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/1?v=4") ?? URL(fileURLWithPath: ""),
+                    htmlUrl: URL(string: "https://github.com/mojombo") ?? URL(fileURLWithPath: "")
+                ),
+                htmlUrl: URL(string: "https://github.com/wycats/merb-core") ?? URL(fileURLWithPath: ""),
+                fork: false
+            ),
+            .mock(
+                id: 27,
+                nodeId: "MDEwOlJlcG9zaXRvcnkyNw==",
+                name: "rubinius",
+                fullName: "rubinius/rubinius",
+                isPrivate: false,
+                owner: .mock(
+                    login: "defunkt",
+                    id: 2,
+                    nodeId: "MDQ6VXNlcjI=",
+                    avatarUrl: URL(string: "https://avatars.githubusercontent.com/u/2?v=4") ?? URL(fileURLWithPath: ""),
+                    htmlUrl: URL(string: "https://github.com/defunkt") ?? URL(fileURLWithPath: "")
+                ),
+                htmlUrl: URL(string: "https://github.com/rubinius/rubinius") ?? URL(fileURLWithPath: ""),
+                description: "The Rubinius Language Platform",
+                fork: false
+            )
+        ]
     }
 }
 #endif

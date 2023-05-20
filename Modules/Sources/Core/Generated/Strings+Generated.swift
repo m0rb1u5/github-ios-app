@@ -10,16 +10,32 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
+  /// An error ocurred
+  public static let errorDescription = L10n.tr("Localizable", "error_description", fallback: "An error ocurred")
+  /// Fork
+  public static let fork = L10n.tr("Localizable", "fork", fallback: "Fork")
   /// Home
   public static let homeTab = L10n.tr("Localizable", "home_tab", fallback: "Home")
   /// Organizations
   public static let orgsTab = L10n.tr("Localizable", "orgs_tab", fallback: "Organizations")
+  /// Private
+  public static let `private` = L10n.tr("Localizable", "private", fallback: "Private")
   /// Profile
   public static let profileTab = L10n.tr("Localizable", "profile_tab", fallback: "Profile")
+  /// Public
+  public static let `public` = L10n.tr("Localizable", "public", fallback: "Public")
   /// Repositories
   public static let reposTab = L10n.tr("Localizable", "repos_tab", fallback: "Repositories")
+  /// See All
+  public static let seeAll = L10n.tr("Localizable", "see_all", fallback: "See All")
+  /// Tap
+  public static let tap = L10n.tr("Localizable", "tap", fallback: "Tap")
+  /// Under Construction
+  public static let underConstructionDescription = L10n.tr("Localizable", "under_construction_description", fallback: "Under Construction")
   /// Users
   public static let usersTab = L10n.tr("Localizable", "users_tab", fallback: "Users")
+  /// We're sorry...
+  public static let warningTitle = L10n.tr("Localizable", "warning_title", fallback: "We're sorry...")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

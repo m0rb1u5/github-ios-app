@@ -3,3 +3,11 @@
 "repos_tab"="Repositories";
 "orgs_tab"="Organizations";
 "profile_tab"="Profile";
+"see_all"="See All";
+"tap"="Tap";
+"warning_title"="We're sorry...";
+"error_description"="An error ocurred";
+"under_construction_description"="Under Construction";
+"fork"="Fork";
+"public"="Public";
+"private"="Private";
