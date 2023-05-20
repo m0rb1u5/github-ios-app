@@ -13,7 +13,7 @@ public enum L10n {
   /// Home
   public static let homeTab = L10n.tr("Localizable", "home_tab", fallback: "Home")
   /// Organizations
-  public static let orgTab = L10n.tr("Localizable", "org_tab", fallback: "Organizations")
+  public static let orgsTab = L10n.tr("Localizable", "orgs_tab", fallback: "Organizations")
   /// Profile
   public static let profileTab = L10n.tr("Localizable", "profile_tab", fallback: "Profile")
   /// Repositories
