@@ -18,8 +18,8 @@ public enum L10n {
   public static let fork = L10n.tr("Localizable", "fork", fallback: "Fork")
   /// Home
   public static let homeTab = L10n.tr("Localizable", "home_tab", fallback: "Home")
-  /// My name is Juan. I am an iOS developer and lover of the mobile world. If you want to know more about me follow me on my [linkedin](https://www.linkedin.com/in/juan-carlos-carbajal-ipenza-168bab127/).
-  public static let meDescription = L10n.tr("Localizable", "me_description", fallback: "My name is Juan. I am an iOS developer and lover of the mobile world. If you want to know more about me follow me on my [linkedin](https://www.linkedin.com/in/juan-carlos-carbajal-ipenza-168bab127/).")
+  /// My name is Juan Carlos Carbajal Ipenza. I am an iOS developer and master of computer science. If you want to know more about me, follow me on my [linkedin](https://www.linkedin.com/in/juan-carlos-carbajal-ipenza-168bab127/).
+  public static let meDescription = L10n.tr("Localizable", "me_description", fallback: "My name is Juan Carlos Carbajal Ipenza. I am an iOS developer and master of computer science. If you want to know more about me, follow me on my [linkedin](https://www.linkedin.com/in/juan-carlos-carbajal-ipenza-168bab127/).")
   /// Organizations
   public static let orgsTab = L10n.tr("Localizable", "orgs_tab", fallback: "Organizations")
   /// Organizations

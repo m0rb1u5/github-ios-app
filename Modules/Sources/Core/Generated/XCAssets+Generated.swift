@@ -56,6 +56,7 @@ public enum Asset {
     public static let github = ImageAsset(name: "github")
     public static let githubHeader = ImageAsset(name: "github_header")
     public static let me = ImageAsset(name: "me")
+    public static let twitter = ImageAsset(name: "twitter")
 
     // swiftlint:disable trailing_comma
     @available(*, deprecated, message: "All values properties are now deprecated")
@@ -63,6 +64,7 @@ public enum Asset {
       github,
       githubHeader,
       me,
+      twitter,
     ]
     // swiftlint:enable trailing_comma
   }

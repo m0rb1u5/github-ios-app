@@ -7,9 +7,8 @@ public extension Users {
         case fetchUsers
         case handleUsers(Result<[User], GHError>)
         case logError(GHError)
-        /*case eventSelected(Event)
-        case presentEventDetail(Bool)
-        case eventDetail(EventDetail.Action)
-        case events(Events.Action)*/
+        case userSelected(User)
+        case presentUserDetail(Bool)
+        case userDetail(UserDetail.Action)
     }
 }

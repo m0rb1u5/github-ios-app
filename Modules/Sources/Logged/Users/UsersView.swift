@@ -23,24 +23,15 @@ public struct UsersView: View {
             }
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(L10n.usersTitle)
-                /*.dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.eventDetailIsPresented,
-                        send: { Home.Action.presentEventDetail($0) }
-                    ),
-                    destination: {
-                        eventDetailView
-                    }
-                )
-                .dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.seeAllEvents,
-                        send: { Home.Action.seeAllEvents($0) }
-                    ),
-                    destination: {
-                        eventsView
-                    }
-                )*/
+            .ghNavigationLink(
+                isActive: viewStore.binding(
+                    get: \.userDetailIsPresented,
+                    send: { Users.Action.presentUserDetail($0) }
+                ),
+                destination: {
+                    userDetailView
+                }
+            )
         }
     }
 
@@ -51,7 +42,7 @@ public struct UsersView: View {
                 VStack(spacing: .zero) {
                     ForEach(users, id: \.self) { user in
                         Button(
-                            action: { },//viewStore.send(.eventSelected(event)) },
+                            action: { viewStore.send(.userSelected(user)) },
                             label: {
                                 GHUserCard(
                                     user: user
@@ -65,30 +56,17 @@ public struct UsersView: View {
         .padding(.bottom, 16)
     }
 
-    /*
     @ViewBuilder
-    private var eventDetailView: some View {
+    private var userDetailView: some View {
         IfLetStore(
             store.scope(
-                state: \.eventDetail,
-                action: Home.Action.eventDetail
+                state: \.userDetail,
+                action: Users.Action.userDetail
             )
         ) {
-            EventDetailView(store: $0)
+            UserDetailView(store: $0)
         }
     }
-
-    @ViewBuilder
-    private var eventsView: some View {
-        IfLetStore(
-            store.scope(
-                state: \.eventsState,
-                action: Home.Action.events
-            )
-        ) {
-            EventsView(store: $0)
-        }
-    }*/
 }
 
 #if DEBUG

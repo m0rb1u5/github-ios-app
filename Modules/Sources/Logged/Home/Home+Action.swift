@@ -17,9 +17,8 @@ public extension Home {
         case users(Users.Action)
         case repos(Repos.Action)
         case orgs(Orgs.Action)
-        /*case eventSelected(Event)
-        case presentEventDetail(Bool)
-        case eventDetail(EventDetail.Action)
-        case events(Events.Action)*/
+        case userSelected(User)
+        case presentUserDetail(Bool)
+        case userDetail(UserDetail.Action)
     }
 }

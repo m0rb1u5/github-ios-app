@@ -106,19 +106,16 @@ public extension Home {
             case .orgs:
                 return .none
 
-            /*case let .eventSelected(event):
-                state.eventDetail = .init(eventId: event.id, eventTitle: event.title)
-                return .init(value: .presentEventDetail(true))
+            case let .userSelected(user):
+                state.userDetail = .init(username: user.login)
+                return .init(value: .presentUserDetail(true))
 
-            case let .presentEventDetail(isPresented):
-                state.eventDetailIsPresented = isPresented
+            case let .presentUserDetail(isPresented):
+                state.userDetailIsPresented = isPresented
                 return .none
 
-            case .eventDetail:
+            case .userDetail:
                 return .none
-
-            case .events:
-                return .none*/
             }
         }
         .ifLet(\.usersState, action: /Action.users) {
@@ -130,9 +127,8 @@ public extension Home {
         .ifLet(\.orgsState, action: /Action.orgs) {
             Orgs()
         }
-        /*.ifLet(\.eventDetail, action: /Action.eventDetail) {
-            EventDetail()
+        .ifLet(\.userDetail, action: /Action.userDetail) {
+            UserDetail()
         }
-        */
     }
 }

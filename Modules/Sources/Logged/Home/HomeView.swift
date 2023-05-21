@@ -25,15 +25,6 @@ public struct HomeView: View {
                         ghNavigationBar
                     }
                 }
-                /*.ghNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.eventDetailIsPresented,
-                        send: { Home.Action.presentEventDetail($0) }
-                    ),
-                    destination: {
-                        eventDetailView
-                    }
-                )*/
                 .ghNavigationLink(
                     isActive: viewStore.binding(
                         get: \.seeAllUsers,
@@ -59,6 +50,15 @@ public struct HomeView: View {
                     ),
                     destination: {
                         orgsView
+                    }
+                )
+                .ghNavigationLink(
+                    isActive: viewStore.binding(
+                        get: \.userDetailIsPresented,
+                        send: { Home.Action.presentUserDetail($0) }
+                    ),
+                    destination: {
+                        userDetailView
                     }
                 )
             }
@@ -90,18 +90,17 @@ public struct HomeView: View {
         .padding(.bottom, 16)
     }
 
-    /*
     @ViewBuilder
-    private var eventDetailView: some View {
+    private var userDetailView: some View {
         IfLetStore(
             store.scope(
-                state: \.eventDetail,
-                action: Home.Action.eventDetail
+                state: \.userDetail,
+                action: Home.Action.userDetail
             )
         ) {
-            EventDetailView(store: $0)
+            UserDetailView(store: $0)
         }
-    }*/
+    }
 
     @ViewBuilder
     private var usersView: some View {
@@ -154,15 +153,14 @@ public struct HomeView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         LazyHStack(alignment: .top, spacing: 16) {
                             ForEach(users, id: \.self) { user in
-                                NavigationLink(
-                                    destination: GHUnderConstructionScreen()
-                                        .navigationTitle(user.title)
-                                        .navigationBarTitleDisplayMode(.inline)
-                                ) {
-                                    GHSimpleCard(
-                                        model: user
-                                    )
-                                }
+                                Button(
+                                    action: { viewStore.send(.userSelected(user)) },
+                                    label: {
+                                        GHSimpleCard(
+                                            model: user
+                                        )
+                                    }
+                                )
                             }
                         }
                     }

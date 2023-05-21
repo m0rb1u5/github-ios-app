@@ -33,26 +33,20 @@ public extension Users {
                 Logger(subsystem: "Users", category: "Service").error("\(error.errorDescription ?? "")")
                 return .none
 
-            /*case let .eventSelected(event):
-                state.eventDetail = .init(eventId: event.id, eventTitle: event.title)
-                return .init(value: .presentEventDetail(true))
+            case let .userSelected(user):
+                state.userDetail = .init(username: user.login)
+                return .init(value: .presentUserDetail(true))
 
-            case let .presentEventDetail(isPresented):
-                state.eventDetailIsPresented = isPresented
+            case let .presentUserDetail(isPresented):
+                state.userDetailIsPresented = isPresented
                 return .none
 
-            case .eventDetail:
+            case .userDetail:
                 return .none
-
-            case .events:
-                return .none*/
             }
         }
-        /*.ifLet(\.eventDetail, action: /Action.eventDetail) {
-            EventDetail()
+        .ifLet(\.userDetail, action: /Action.userDetail) {
+            UserDetail()
         }
-        .ifLet(\.eventsState, action: /Action.events) {
-            Events()
-        }*/
     }
 }

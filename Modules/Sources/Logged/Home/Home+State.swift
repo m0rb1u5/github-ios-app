@@ -13,9 +13,8 @@ public extension Home {
         public var usersState: Users.State?
         public var reposState: Repos.State?
         public var orgsState: Orgs.State?
-        /*public var eventDetail: EventDetail.State?
-        public var eventDetailIsPresented: Bool
-        public var eventsState: Events.State?*/
+        public var userDetail: UserDetail.State?
+        public var userDetailIsPresented: Bool
 
         public init(
             isInitialized: Bool = false,
@@ -27,10 +26,9 @@ public extension Home {
             seeAllOrgs: Bool = false,
             usersState: Users.State? = nil,
             reposState: Repos.State? = nil,
-            orgsState: Orgs.State? = nil
-            /*eventDetail: EventDetail.State? = nil,
-            eventDetailIsPresented: Bool = false,
-            eventsState: Events.State? = nil*/
+            orgsState: Orgs.State? = nil,
+            userDetail: UserDetail.State? = nil,
+            userDetailIsPresented: Bool = false
         ) {
             self.isInitialized = isInitialized
             self.users = users
@@ -42,6 +40,8 @@ public extension Home {
             self.usersState = usersState
             self.reposState = reposState
             self.orgsState = orgsState
+            self.userDetail = userDetail
+            self.userDetailIsPresented = userDetailIsPresented
         }
     }
 }
