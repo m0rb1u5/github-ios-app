@@ -6,6 +6,9 @@ import os.log
 public extension Repos {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
+            struct CancelID {
+            }
+
             switch action {
             case .onAppear:
                 if !state.isInitialized {
@@ -29,30 +32,31 @@ public extension Repos {
                 state.repos = .error(error)
                 return .init(value: .logError(error))
 
+            case let .searchedRepos(key):
+                state.searchKey = key
+                state.searchedRepos = .loading
+                return .init(value: .fetchSearchRepos)
+                    .debounce(id: CancelID.self, for: .seconds(1), scheduler: mainQueue)
+
+            case .fetchSearchRepos:
+                state.searchedRepos = .loading
+                return reposService
+                    .searchRepo(.init(query: state.searchKey, sort: .joined, order: .asc, perPage: 100, page: 1))
+                    .catchToEffect()
+                    .map(Repos.Action.handleSearchRepos)
+
+            case let .handleSearchRepos(.success(searchedRepos)):
+                state.searchedRepos = .loaded(searchedRepos)
+                return .none
+
+            case let .handleSearchRepos(.failure(error)):
+                state.searchedRepos = .error(error)
+                return .init(value: .logError(error))
+
             case let .logError(error):
                 Logger(subsystem: "Repos", category: "Service").error("\(error.errorDescription ?? "")")
                 return .none
-
-            /*case let .eventSelected(event):
-                state.eventDetail = .init(eventId: event.id, eventTitle: event.title)
-                return .init(value: .presentEventDetail(true))
-
-            case let .presentEventDetail(isPresented):
-                state.eventDetailIsPresented = isPresented
-                return .none
-
-            case .eventDetail:
-                return .none
-
-            case .events:
-                return .none*/
             }
         }
-        /*.ifLet(\.eventDetail, action: /Action.eventDetail) {
-            EventDetail()
-        }
-        .ifLet(\.eventsState, action: /Action.events) {
-            Events()
-        }*/
     }
 }

@@ -6,10 +6,9 @@ public extension Repos {
         case onAppear
         case fetchRepos
         case handleRepos(Result<[Repo], GHError>)
+        case searchedRepos(String)
+        case fetchSearchRepos
+        case handleSearchRepos(Result<SearchResponse<Repo>, GHError>)
         case logError(GHError)
-        /*case eventSelected(Event)
-        case presentEventDetail(Bool)
-        case eventDetail(EventDetail.Action)
-        case events(Events.Action)*/
     }
 }

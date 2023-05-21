@@ -17,47 +17,53 @@ public struct ReposView: View {
                 ScrollView(showsIndicators: false) {
                     content
                 }
+                .searchable(
+                    text: viewStore.binding(
+                        get: \.searchKey,
+                        send: { Repos.Action.searchedRepos($0) }
+                    ),
+                    prompt: "Search a Repo"
+                )
             }
             .onAppear {
                 viewStore.send(.onAppear)
             }
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(L10n.reposTitle)
-                /*.dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.eventDetailIsPresented,
-                        send: { Home.Action.presentEventDetail($0) }
-                    ),
-                    destination: {
-                        eventDetailView
-                    }
-                )
-                .dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.seeAllEvents,
-                        send: { Home.Action.seeAllEvents($0) }
-                    ),
-                    destination: {
-                        eventsView
-                    }
-                )*/
         }
     }
 
     @ViewBuilder
     private var content: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            GHRequestScreen(state: viewStore.repos) { repos in
-                LazyVStack(spacing: .zero) {
-                    ForEach(repos, id: \.self) { repo in
-                        Button(
-                            action: { },//viewStore.send(.eventSelected(event)) },
-                            label: {
-                                GHRepoCard(
-                                    repo: repo
-                                )
-                            }
-                        )
+            if viewStore.searchKey.isEmpty {
+                GHRequestScreen(state: viewStore.repos) { repos in
+                    LazyVStack(spacing: .zero) {
+                        ForEach(repos, id: \.self) { repo in
+                            Button(
+                                action: { },//viewStore.send(.eventSelected(event)) },
+                                label: {
+                                    GHRepoCard(
+                                        repo: repo
+                                    )
+                                }
+                            )
+                        }
+                    }
+                }
+            } else {
+                GHRequestScreen(state: viewStore.searchedRepos) { searchedRepos in
+                    LazyVStack(spacing: .zero) {
+                        ForEach(searchedRepos.items, id: \.self) { repo in
+                            Button(
+                                action: { },//viewStore.send(.eventSelected(event)) },
+                                label: {
+                                    GHRepoCard(
+                                        repo: repo
+                                    )
+                                }
+                            )
+                        }
                     }
                 }
             }
