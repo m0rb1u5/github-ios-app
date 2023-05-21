@@ -32,27 +32,7 @@ public extension Orgs {
             case let .logError(error):
                 Logger(subsystem: "Orgs", category: "Service").error("\(error.errorDescription ?? "")")
                 return .none
-
-            /*case let .eventSelected(event):
-                state.eventDetail = .init(eventId: event.id, eventTitle: event.title)
-                return .init(value: .presentEventDetail(true))
-
-            case let .presentEventDetail(isPresented):
-                state.eventDetailIsPresented = isPresented
-                return .none
-
-            case .eventDetail:
-                return .none
-
-            case .events:
-                return .none*/
             }
         }
-        /*.ifLet(\.eventDetail, action: /Action.eventDetail) {
-            EventDetail()
-        }
-        .ifLet(\.eventsState, action: /Action.events) {
-            Events()
-        }*/
     }
 }

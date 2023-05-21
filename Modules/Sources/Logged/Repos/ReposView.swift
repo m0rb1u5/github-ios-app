@@ -41,7 +41,7 @@ public struct ReposView: View {
                     LazyVStack(spacing: .zero) {
                         ForEach(repos, id: \.self) { repo in
                             Button(
-                                action: { },//viewStore.send(.eventSelected(event)) },
+                                action: { },
                                 label: {
                                     GHRepoCard(
                                         repo: repo
@@ -56,7 +56,7 @@ public struct ReposView: View {
                     LazyVStack(spacing: .zero) {
                         ForEach(searchedRepos.items, id: \.self) { repo in
                             Button(
-                                action: { },//viewStore.send(.eventSelected(event)) },
+                                action: { },
                                 label: {
                                     GHRepoCard(
                                         repo: repo
@@ -70,31 +70,6 @@ public struct ReposView: View {
         }
         .padding(.bottom, 16)
     }
-
-    /*
-    @ViewBuilder
-    private var eventDetailView: some View {
-        IfLetStore(
-            store.scope(
-                state: \.eventDetail,
-                action: Home.Action.eventDetail
-            )
-        ) {
-            EventDetailView(store: $0)
-        }
-    }
-
-    @ViewBuilder
-    private var eventsView: some View {
-        IfLetStore(
-            store.scope(
-                state: \.eventsState,
-                action: Home.Action.events
-            )
-        ) {
-            EventsView(store: $0)
-        }
-    }*/
 }
 
 #if DEBUG

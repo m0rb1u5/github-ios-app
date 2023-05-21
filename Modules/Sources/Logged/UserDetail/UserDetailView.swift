@@ -27,24 +27,6 @@ public struct UserDetailView: View {
             }
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle(viewStore.username)
-                /*.dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.eventDetailIsPresented,
-                        send: { Home.Action.presentEventDetail($0) }
-                    ),
-                    destination: {
-                        eventDetailView
-                    }
-                )
-                .dvNavigationLink(
-                    isActive: viewStore.binding(
-                        get: \.seeAllEvents,
-                        send: { Home.Action.seeAllEvents($0) }
-                    ),
-                    destination: {
-                        eventsView
-                    }
-                )*/
         }
     }
 
@@ -64,19 +46,6 @@ public struct UserDetailView: View {
             }
         }
     }
-
-    /*
-    @ViewBuilder
-    private var eventDetailView: some View {
-        IfLetStore(
-            store.scope(
-                state: \.eventDetail,
-                action: Home.Action.eventDetail
-            )
-        ) {
-            EventDetailView(store: $0)
-        }
-    }*/
 
     @ViewBuilder
     private func headerSection(_ user: User) -> some View {
