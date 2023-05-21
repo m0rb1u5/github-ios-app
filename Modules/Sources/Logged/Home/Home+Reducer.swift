@@ -8,6 +8,9 @@ public extension Home {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                state.seeAllUsers = false
+                state.seeAllRepos = false
+                state.seeAllOrgs = false
                 if !state.isInitialized {
                     state.isInitialized = true
                     return .merge([
@@ -65,21 +68,42 @@ public extension Home {
 
             case let .seeAllUsers(value):
                 state.seeAllUsers = value
-                /*if value {
-                    state.eventsState = .init()
-                }*/
+                if value {
+                    state.usersState = .init()
+                } else {
+                    state.usersState = nil
+                }
                 return .none
 
             case let .seeAllRepos(value):
                 state.seeAllRepos = value
+                if value {
+                    state.reposState = .init()
+                } else {
+                    state.reposState = nil
+                }
                 return .none
 
             case let .seeAllOrgs(value):
                 state.seeAllOrgs = value
+                if value {
+                    state.orgsState = .init()
+                } else {
+                    state.orgsState = nil
+                }
                 return .none
 
             case let .logError(error):
                 Logger(subsystem: "Home", category: "Service").error("\(error.errorDescription ?? "")")
+                return .none
+
+            case .users:
+                return .none
+
+            case .repos:
+                return .none
+
+            case .orgs:
                 return .none
 
             /*case let .eventSelected(event):
@@ -97,11 +121,18 @@ public extension Home {
                 return .none*/
             }
         }
+        .ifLet(\.usersState, action: /Action.users) {
+            Users()
+        }
+        .ifLet(\.reposState, action: /Action.repos) {
+            Repos()
+        }
+        .ifLet(\.orgsState, action: /Action.orgs) {
+            Orgs()
+        }
         /*.ifLet(\.eventDetail, action: /Action.eventDetail) {
             EventDetail()
         }
-        .ifLet(\.eventsState, action: /Action.events) {
-            Events()
-        }*/
+        */
     }
 }

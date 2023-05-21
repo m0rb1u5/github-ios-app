@@ -25,7 +25,7 @@ public struct HomeView: View {
                         ghNavigationBar
                     }
                 }
-                /*.dvNavigationLink(
+                /*.ghNavigationLink(
                     isActive: viewStore.binding(
                         get: \.eventDetailIsPresented,
                         send: { Home.Action.presentEventDetail($0) }
@@ -33,16 +33,34 @@ public struct HomeView: View {
                     destination: {
                         eventDetailView
                     }
-                )
-                .dvNavigationLink(
+                )*/
+                .ghNavigationLink(
                     isActive: viewStore.binding(
-                        get: \.seeAllEvents,
-                        send: { Home.Action.seeAllEvents($0) }
+                        get: \.seeAllUsers,
+                        send: { Home.Action.seeAllUsers($0) }
                     ),
                     destination: {
-                        eventsView
+                        usersView
                     }
-                )*/
+                )
+                .ghNavigationLink(
+                    isActive: viewStore.binding(
+                        get: \.seeAllRepos,
+                        send: { Home.Action.seeAllRepos($0) }
+                    ),
+                    destination: {
+                        reposView
+                    }
+                )
+                .ghNavigationLink(
+                    isActive: viewStore.binding(
+                        get: \.seeAllOrgs,
+                        send: { Home.Action.seeAllOrgs($0) }
+                    ),
+                    destination: {
+                        orgsView
+                    }
+                )
             }
             .onAppear {
                 viewStore.send(.onAppear)
@@ -83,26 +101,54 @@ public struct HomeView: View {
         ) {
             EventDetailView(store: $0)
         }
+    }*/
+
+    @ViewBuilder
+    private var usersView: some View {
+        IfLetStore(
+            store.scope(
+                state: \.usersState,
+                action: Home.Action.users
+            )
+        ) {
+            UsersView(store: $0)
+        }
     }
 
     @ViewBuilder
-    private var eventsView: some View {
+    private var reposView: some View {
         IfLetStore(
             store.scope(
-                state: \.eventsState,
-                action: Home.Action.events
+                state: \.reposState,
+                action: Home.Action.repos
             )
         ) {
-            EventsView(store: $0)
+            ReposView(store: $0)
         }
-    }*/
+    }
+
+    @ViewBuilder
+    private var orgsView: some View {
+        IfLetStore(
+            store.scope(
+                state: \.orgsState,
+                action: Home.Action.orgs
+            )
+        ) {
+            OrgsView(store: $0)
+        }
+    }
 
     @ViewBuilder
     private var usersSection: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHSection(
                 header: L10n.usersTitle,
-                hasSeeAllButton: true
+                hasSeeAllButton: true,
+                isShowingAll: viewStore.binding(
+                    get: \.seeAllUsers,
+                    send: { Home.Action.seeAllUsers($0) }
+                )
             ) {
                 GHRequestScreen(state: viewStore.users) { users in
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -130,7 +176,11 @@ public struct HomeView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHSection(
                 header: L10n.reposTitle,
-                hasSeeAllButton: true
+                hasSeeAllButton: true,
+                isShowingAll: viewStore.binding(
+                    get: \.seeAllRepos,
+                    send: { Home.Action.seeAllRepos($0) }
+                )
             ) {
                 GHRequestScreen(state: viewStore.repos) { repos in
                     ScrollView(.horizontal, showsIndicators: false) {
@@ -158,7 +208,11 @@ public struct HomeView: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHSection(
                 header: L10n.orgsTitle,
-                hasSeeAllButton: true
+                hasSeeAllButton: true,
+                isShowingAll: viewStore.binding(
+                    get: \.seeAllOrgs,
+                    send: { Home.Action.seeAllOrgs($0) }
+                )
             ) {
                 GHRequestScreen(state: viewStore.orgs) { orgs in
                     ScrollView(.horizontal, showsIndicators: false) {

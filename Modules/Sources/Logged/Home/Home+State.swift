@@ -10,6 +10,9 @@ public extension Home {
         public var seeAllUsers: Bool
         public var seeAllRepos: Bool
         public var seeAllOrgs: Bool
+        public var usersState: Users.State?
+        public var reposState: Repos.State?
+        public var orgsState: Orgs.State?
         /*public var eventDetail: EventDetail.State?
         public var eventDetailIsPresented: Bool
         public var eventsState: Events.State?*/
@@ -21,7 +24,10 @@ public extension Home {
             orgs: DataState<[Org]> = .loading,
             seeAllUsers: Bool = false,
             seeAllRepos: Bool = false,
-            seeAllOrgs: Bool = false
+            seeAllOrgs: Bool = false,
+            usersState: Users.State? = nil,
+            reposState: Repos.State? = nil,
+            orgsState: Orgs.State? = nil
             /*eventDetail: EventDetail.State? = nil,
             eventDetailIsPresented: Bool = false,
             eventsState: Events.State? = nil*/
@@ -33,6 +39,9 @@ public extension Home {
             self.seeAllUsers = seeAllUsers
             self.seeAllRepos = seeAllRepos
             self.seeAllOrgs = seeAllOrgs
+            self.usersState = usersState
+            self.reposState = reposState
+            self.orgsState = orgsState
         }
     }
 }
