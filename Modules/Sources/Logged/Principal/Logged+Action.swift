@@ -8,5 +8,6 @@ public extension Logged {
         case home(Home.Action)
         case users(Users.Action)
         case repos(Repos.Action)
+        case orgs(Orgs.Action)
     }
 }

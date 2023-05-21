@@ -13,18 +13,21 @@ public extension Logged {
                     return .none
                 }
                 return .none
-
+                
             case let .selectTab(tab):
                 state.selectedTab = tab
                 return .none
-
+                
             case .home:
                 return .none
-
+                
             case .users:
                 return .none
-
+                
             case .repos:
+                return .none
+                
+            case .orgs:
                 return .none
             }
         }
@@ -36,6 +39,9 @@ public extension Logged {
         }
         .ifLet(\.repos, action: /Action.repos) {
             Repos()
+        }
+        .ifLet(\.orgs, action: /Action.orgs) {
+            Orgs()
         }
     }
 }

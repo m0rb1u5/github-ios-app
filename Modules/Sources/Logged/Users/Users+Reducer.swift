@@ -30,7 +30,7 @@ public extension Users {
                 return .init(value: .logError(error))
 
             case let .logError(error):
-                Logger(subsystem: "Home", category: "Service").error("\(error.errorDescription ?? "")")
+                Logger(subsystem: "Users", category: "Service").error("\(error.errorDescription ?? "")")
                 return .none
 
             /*case let .eventSelected(event):

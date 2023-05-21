@@ -9,6 +9,7 @@ public extension Logged {
         public var home: Home.State?
         public var users: Users.State?
         public var repos: Repos.State?
+        public var orgs: Orgs.State?
 
         public init(
             isInitialized: Bool = false,
@@ -16,7 +17,8 @@ public extension Logged {
             tabs: [TabBarType] = TabBarType.allCases,
             home: Home.State? = .init(),
             users: Users.State? = .init(),
-            repos: Repos.State? = .init()
+            repos: Repos.State? = .init(),
+            orgs: Orgs.State? = .init()
         ) {
             self.isInitialized = isInitialized
             self.selectedTab = selectedTab
@@ -24,6 +26,7 @@ public extension Logged {
             self.home = home
             self.users = users
             self.repos = repos
+            self.orgs = orgs
         }
     }
 }

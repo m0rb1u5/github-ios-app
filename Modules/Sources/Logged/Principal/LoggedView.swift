@@ -62,7 +62,7 @@ public struct LoggedView: View {
 
             case .orgs:
                 NavigationStack {
-                    GHUnderConstructionScreen() // TODO: To implement in the future
+                    orgsView
                 }
 
             case .profile:
@@ -101,6 +101,17 @@ public struct LoggedView: View {
                 action: Logged.Action.repos
             ),
             then: ReposView.init(store:)
+        )
+    }
+
+    @ViewBuilder
+    private var orgsView: some View {
+        IfLetStore(
+            store.scope(
+                state: \.orgs,
+                action: Logged.Action.orgs
+            ),
+            then: OrgsView.init(store:)
         )
     }
 }

@@ -3,34 +3,34 @@ import ComposableArchitecture
 import Core
 import os.log
 
-public extension Repos {
+public extension Orgs {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
             switch action {
             case .onAppear:
                 if !state.isInitialized {
                     state.isInitialized = true
-                    return .init(value: .fetchRepos)
+                    return .init(value: .fetchOrgs)
                 }
                 return .none
 
-            case .fetchRepos:
-                state.repos = .loading
-                return reposService
-                    .listRepos(nil)
+            case .fetchOrgs:
+                state.orgs = .loading
+                return orgsService
+                    .listOrgs(.init(perPage: 100))
                     .catchToEffect()
-                    .map(Repos.Action.handleRepos)
+                    .map(Orgs.Action.handleOrgs)
 
-            case let .handleRepos(.success(repos)):
-                state.repos = .loaded(repos)
+            case let .handleOrgs(.success(orgs)):
+                state.orgs = .loaded(orgs)
                 return .none
 
-            case let .handleRepos(.failure(error)):
-                state.repos = .error(error)
+            case let .handleOrgs(.failure(error)):
+                state.orgs = .error(error)
                 return .init(value: .logError(error))
 
             case let .logError(error):
-                Logger(subsystem: "Repos", category: "Service").error("\(error.errorDescription ?? "")")
+                Logger(subsystem: "Orgs", category: "Service").error("\(error.errorDescription ?? "")")
                 return .none
 
             /*case let .eventSelected(event):
