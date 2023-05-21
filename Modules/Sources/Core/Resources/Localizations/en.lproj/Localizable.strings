@@ -11,3 +11,9 @@
 "fork"="Fork";
 "public"="Public";
 "private"="Private";
+"users_title"="Users";
+"repos_title"="Repositories";
+"orgs_title"="Organizations";
+"about_me_title"="About me";
+"me_description"="My name is Juan Carlos Carbajal Ipenza. I am an iOS developer and master of computer science. If you want to know more about me, follow me on my [linkedin](https://www.linkedin.com/in/juan-carlos-carbajal-ipenza-168bab127/).";
+

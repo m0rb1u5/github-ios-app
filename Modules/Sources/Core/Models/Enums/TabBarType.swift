@@ -33,7 +33,7 @@ public enum TabBarType: CaseIterable {
             return Image(systemSymbol: .houseFill)
 
         case .users:
-            return Image(systemSymbol: .person3Fill)
+            return Image(systemSymbol: .person2Fill)
 
         case .repos:
             return Image(systemSymbol: .shippingboxFill)
@@ -42,7 +42,7 @@ public enum TabBarType: CaseIterable {
             return Image(systemSymbol: .building2Fill)
 
         case .profile:
-            return Image(systemSymbol: .personFill)
+            return Image(systemSymbol: .personFillViewfinder)
         }
     }
 }

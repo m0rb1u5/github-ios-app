@@ -1,6 +1,14 @@
-public struct Entry {
-    public private(set) var text: String = "Hello, World!"
+import Combine
+import ComposableArchitecture
+import Core
+import Dispatch
 
-    public init() {
+public struct Entry: ReducerProtocol {
+    public var mainQueue: AnySchedulerOf<DispatchQueue>
+
+    public init(
+        mainQueue: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler()
+    ) {
+        self.mainQueue = mainQueue
     }
 }

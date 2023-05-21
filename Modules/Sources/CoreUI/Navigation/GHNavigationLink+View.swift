@@ -3,7 +3,7 @@ import SwiftUI
 
 public extension View {
     @ViewBuilder
-    func dvNavigationLink<Destination: View>(
+    func ghNavigationLink<Destination: View>(
         isActive: Binding<Bool>,
         destination: @escaping () -> Destination
     ) -> some View {

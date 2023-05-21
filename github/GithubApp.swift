@@ -1,10 +1,17 @@
+import ComposableArchitecture
+import Entry
 import SwiftUI
 
 @main
 struct GithubApp: App {
     var body: some Scene {
         WindowGroup {
-            Text("Hello World")
+            EntryView(
+                store: Store(
+                    initialState: Entry.State(),
+                    reducer: Entry()
+                )
+            )
         }
     }
 }

@@ -4,23 +4,37 @@ import SwiftUI
 
 public struct GHDescriptionCard: View {
     var model: BasicCardProtocol
+    var customImage: Image?
     var isSelectable: Bool
 
     public init(
         model: BasicCardProtocol,
+        customImage: Image? = nil,
         isSelectable: Bool = false
     ) {
         self.model = model
+        self.customImage = customImage
         self.isSelectable = isSelectable
     }
 
     public var body: some View {
         VStack(spacing: 8) {
             HStack(alignment: .center, spacing: 8) {
-                GHImageCard(
-                    url: model.avatarUrl
-                )
-                .accessibilityLabel(Text(model.title))
+                if let customImage: Image = customImage {
+                    customImage
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 100, height: 100)
+                        .clipped()
+                        .cornerRadius(15)
+                        .shadow(radius: 3)
+                    .accessibilityLabel(Text(model.title))
+                } else {
+                    GHImageCard(
+                        url: model.avatarUrl
+                    )
+                    .accessibilityLabel(Text(model.title))
+                }
                 content
                 Spacer(minLength: 0)
                 if isSelectable {
@@ -43,9 +57,9 @@ public struct GHDescriptionCard: View {
     @ViewBuilder
     private var content: some View {
         VStack(alignment: .leading, spacing: 4) {
-            Text(model.title)
+            Text(LocalizedStringKey(model.title))
                 .foregroundColor(Asset.Colors.textPrimary.swiftUIColor)
-                .font(FontFamily.Roboto.regular.swiftUIFont(size: 18))
+                .font(FontFamily.Roboto.regular.swiftUIFont(size: 15))
                 .multilineTextAlignment(.leading)
         }
     }
