@@ -2,44 +2,44 @@
 
 ### App
 #### Icon
-![Icon](../.img/1.png)
+![Icon](.img/1.png)
 
 #### Splash Screen
-![Splash Screen](../.img/2.png)
+![Splash Screen](.img/2.png)
 
 #### Home Screen
-![Home Screen](../img/.3.png)
+![Home Screen](img/.3.png)
 
 #### Users Screen
-![User Screen](../img/.4.png)
+![User Screen](img/.4.png)
 
 #### Users Screen: Searching
-![User Screen Searching](../img/.13.png)
+![User Screen Searching](img/.13.png)
 
 #### Repositories Screen
-![Repositories Screen](../img/.5.png)
+![Repositories Screen](img/.5.png)
 
 #### Repositories Screen: Searching
-![Repositories Screen Searching](../img/.14.png)
+![Repositories Screen Searching](img/.14.png)
 
 #### Organizations Screen
-![Organizations Screen](../img/.6.png)
+![Organizations Screen](img/.6.png)
 
 #### Profile Screen (able to implement in the future)
-![Profile Screen](../img/.7.png)
+![Profile Screen](img/.7.png)
 
 #### User Detail Screen
-![User Detail Screen](../img/.8.png)
+![User Detail Screen](img/.8.png)
 
 #### Repositories and Organizatoins in the User Detail Screen
-![Repositories and Organizatoins in the User Detail Screen](../img/.9.png)
+![Repositories and Organizatoins in the User Detail Screen](img/.9.png)
 
 ### Share link
-![Share link](../img/.10.png)
+![Share link](img/.10.png)
 
 ### Support to Light Mode
-![Support to Light Mode 1](../img/.11.png)
-![Support to Light Mode 2](../img/.12.png)
+![Support to Light Mode 1](img/.11.png)
+![Support to Light Mode 2](img/.12.png)
 
 ### Tools
 
@@ -54,7 +54,7 @@ For this challengue, I used the next tools:
 
 Also, I used the next architecture: [TCA](https://github.com/pointfreeco/swift-composable-architecture). The Composable Architecture (TCA, for short) is one of the newest architectures that arrived after native implementation of reactive programming in Swift (Combine) and the user interfaces programmatacaly (SwiftUI) solving problems of old architectures used in the market like MVVM, MVVM-C, and MVC.
 
-![TCA Architecture](../.img/tca.png)
+![TCA Architecture](.img/tca.png)
 
 
 ### Modularization
@@ -78,11 +78,11 @@ For this project, I applied modularization for the different advantages (build t
 
 We used dependency injection in this project because was necessary to use mock data simulating network connection. For that reason we used the default dependency injection of the TCA architecture: [Swift Dependencies](https://github.com/pointfreeco/swift-dependencies). Also with this package we can have dependency injection for the test and the previews in SwiftUI. Another advantage was when I implemented the Network module, it was easy to change the injection from **mockingz** to **live**.
 
-![Dependency Injection](../.img/dependency-injection.png')
+![Dependency Injection](.img/dependency-injection.png')
 
 For example, with failing injection we have the next screen:
 
-![App principal screen: Failing injection](../.img/15.png)
+![App principal screen: Failing injection](.img/15.png)
 
 ### **Important**
 - Due to time problems, I was unable to add the repository detail and organization detail screens. The endpoints were added, but only the screen was missing.
