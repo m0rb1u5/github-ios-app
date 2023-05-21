@@ -1,8 +1,7 @@
 ## Github App
 
 ### App
-#### Video
-https://youtu.be/FArYe195s_g
+#### Video (click in the image to watch the video)
 [![Watch the video](.img/8.png)](https://youtu.be/FArYe195s_g)
 
 #### Icon
