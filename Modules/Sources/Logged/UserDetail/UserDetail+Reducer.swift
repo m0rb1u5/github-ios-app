@@ -8,7 +8,10 @@ public extension UserDetail {
         Reduce { state, action in
             switch action {
             case .onAppear:
-                return .init(value: .fetchUser)
+                return .merge([
+                    .init(value: .fetchUser),
+                    .init(value: .fetchRepos)
+                ])
 
             case .fetchUser:
                 state.user = .loading
@@ -23,6 +26,29 @@ public extension UserDetail {
 
             case let .handleUser(.failure(error)):
                 state.user = .error(error)
+                return .init(value: .logError(error))
+
+            case .fetchRepos:
+                state.repos = .loading
+                return reposService
+                    .listReposForUser(
+                        state.username, .init(
+                            type: .all,
+                            sort: .updated,
+                            direction: .asc,
+                            perPage: 20,
+                            page: 1
+                        )
+                    )
+                    .catchToEffect()
+                    .map(UserDetail.Action.handleRepos)
+
+            case let .handleRepos(.success(repos)):
+                state.repos = .loaded(repos)
+                return .none
+
+            case let .handleRepos(.failure(error)):
+                state.repos = .error(error)
                 return .init(value: .logError(error))
 
             case let .logError(error):

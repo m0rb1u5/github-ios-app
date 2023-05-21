@@ -20,7 +20,7 @@ public struct Repo: BasicCardProtocol, Equatable, Hashable, Decodable, Identifia
     public let sshUrl: URL?
     public let cloneUrl: URL?
     public let svnUrl: URL?
-    public let homepage: URL?
+    public let homepage: String?
     public let size: Int?
     public let stargazersCount: Int?
     public let watchersCount: Int?
@@ -123,7 +123,7 @@ public struct Repo: BasicCardProtocol, Equatable, Hashable, Decodable, Identifia
         sshUrl: URL? = nil,
         cloneUrl: URL? = nil,
         svnUrl: URL? = nil,
-        homepage: URL? = nil,
+        homepage: String? = nil,
         size: Int? = nil,
         stargazersCount: Int? = nil,
         watchersCount: Int? = nil,
@@ -222,7 +222,7 @@ public extension Repo {
         sshUrl: URL? = URL(string: "git@github.com:mojombo/grit.git"),
         cloneUrl: URL? = URL(string: "https://github.com/mojombo/grit.git"),
         svnUrl: URL? = URL(string: "https://github.com/mojombo/grit"),
-        homepage: URL? = URL(string: "http://grit.rubyforge.org/"),
+        homepage: String? = "http://grit.rubyforge.org/",
         size: Int? = 7_954,
         stargazersCount: Int? = 1_964,
         watchersCount: Int? = 1_964,

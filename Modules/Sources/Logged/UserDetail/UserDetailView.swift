@@ -56,6 +56,7 @@ public struct UserDetailView: View {
                     headerSection(user)
                     infoSection(user)
                     bioSection(user)
+                    reposSection
                 }
                 .padding(.bottom, 16)
             }
@@ -230,6 +231,27 @@ public struct UserDetailView: View {
             }
         } else {
             EmptyView()
+        }
+    }
+
+    @ViewBuilder
+    private var reposSection: some View {
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            GHSection(
+                header: "Repositories",
+                hasSeeAllButton: false
+            ) {
+                GHRequestScreen(state: viewStore.repos) { repos in
+                    LazyVStack(spacing: .zero) {
+                        ForEach(repos, id: \.self) { repo in
+                            GHRowCard(
+                                model: repo,
+                                icon: Image(systemSymbol: .shippingboxFill)
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 
