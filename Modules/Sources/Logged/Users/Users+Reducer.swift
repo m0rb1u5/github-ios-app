@@ -6,6 +6,9 @@ import os.log
 public extension Users {
     var body: some ReducerProtocol<State, Action> {
         Reduce { state, action in
+            struct CancelID {
+            }
+
             switch action {
             case .onAppear:
                 if !state.isInitialized {
@@ -27,6 +30,27 @@ public extension Users {
 
             case let .handleUsers(.failure(error)):
                 state.users = .error(error)
+                return .init(value: .logError(error))
+
+            case let .searchedUsers(key):
+                state.searchKey = key
+                state.searchedUsers = .loading
+                return .init(value: .fetchSearchUsers)
+                    .debounce(id: CancelID.self, for: .seconds(1), scheduler: mainQueue)
+
+            case .fetchSearchUsers:
+                state.searchedUsers = .loading
+                return usersService
+                    .searchUser(.init(query: state.searchKey, sort: .joined, order: .asc, perPage: 100, page: 1))
+                    .catchToEffect()
+                    .map(Users.Action.handleSearchUsers)
+
+            case let .handleSearchUsers(.success(searchedUsers)):
+                state.searchedUsers = .loaded(searchedUsers)
+                return .none
+
+            case let .handleSearchUsers(.failure(error)):
+                state.searchedUsers = .error(error)
                 return .init(value: .logError(error))
 
             case let .logError(error):

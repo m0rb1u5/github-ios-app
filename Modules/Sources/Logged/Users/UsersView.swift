@@ -17,6 +17,13 @@ public struct UsersView: View {
                 ScrollView(showsIndicators: false) {
                     content
                 }
+                .searchable(
+                    text: viewStore.binding(
+                        get: \.searchKey,
+                        send: { Users.Action.searchedUsers($0) }
+                    ),
+                    prompt: "Search a User"
+                )
             }
             .onAppear {
                 viewStore.send(.onAppear)
@@ -38,17 +45,34 @@ public struct UsersView: View {
     @ViewBuilder
     private var content: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            GHRequestScreen(state: viewStore.users) { users in
-                LazyVStack(spacing: .zero) {
-                    ForEach(users, id: \.self) { user in
-                        Button(
-                            action: { viewStore.send(.userSelected(user)) },
-                            label: {
-                                GHUserCard(
-                                    user: user
-                                )
-                            }
-                        )
+            if viewStore.searchKey.isEmpty {
+                GHRequestScreen(state: viewStore.users) { users in
+                    LazyVStack(spacing: .zero) {
+                        ForEach(users, id: \.self) { user in
+                            Button(
+                                action: { viewStore.send(.userSelected(user)) },
+                                label: {
+                                    GHUserCard(
+                                        user: user
+                                    )
+                                }
+                            )
+                        }
+                    }
+                }
+            } else {
+                GHRequestScreen(state: viewStore.searchedUsers) { searchedUsers in
+                    LazyVStack(spacing: .zero) {
+                        ForEach(searchedUsers.items, id: \.self) { user in
+                            Button(
+                                action: { viewStore.send(.userSelected(user)) },
+                                label: {
+                                    GHUserCard(
+                                        user: user
+                                    )
+                                }
+                            )
+                        }
                     }
                 }
             }
