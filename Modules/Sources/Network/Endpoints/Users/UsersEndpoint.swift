@@ -50,7 +50,7 @@ extension UsersEndpoint: TargetType {
     }
 
     public var sampleData: Data {
-        return Data()
+        Data()
     }
 }
 

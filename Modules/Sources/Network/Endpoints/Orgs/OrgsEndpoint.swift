@@ -50,7 +50,7 @@ extension OrgsEndpoint: TargetType {
     }
 
     public var sampleData: Data {
-        return Data()
+        Data()
     }
 }
 

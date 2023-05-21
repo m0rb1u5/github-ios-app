@@ -60,7 +60,7 @@ extension ReposEndpoint: TargetType {
     }
 
     public var sampleData: Data {
-        return Data()
+        Data()
     }
 }
 
