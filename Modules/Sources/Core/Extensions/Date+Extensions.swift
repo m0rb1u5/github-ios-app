@@ -10,8 +10,9 @@ public extension Date {
         return formatter.string(from: self)
     }
 
-    func formatTime(_ timeStyle: DateFormatter.Style = .short) -> String {
+    func formatTime(_ dateStyle: DateFormatter.Style = .short, _ timeStyle: DateFormatter.Style = .short) -> String {
         let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateStyle = dateStyle
         dateFormatter.timeStyle = timeStyle
         return dateFormatter.string(from: self)
     }

@@ -3,7 +3,7 @@ import Core
 import Users_Repository
 
 public struct UsersServiceKey: DependencyKey {
-    public static var liveValue: UsersService = .mocking()
+    public static var liveValue: UsersService = .live
     #if DEBUG
     public static var testValue: UsersService = .mocking()
     public static var previewValue: UsersService = .mocking()

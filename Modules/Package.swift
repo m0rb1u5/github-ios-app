@@ -180,7 +180,8 @@ let package = Package(
             name: "Entry",
             dependencies: [
                 "Logged",
-                "Unlogged"
+                "Unlogged",
+                "Network"
             ]
         ),
         .testTarget(

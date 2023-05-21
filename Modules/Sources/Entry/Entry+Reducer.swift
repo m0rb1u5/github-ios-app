@@ -2,6 +2,7 @@ import Combine
 import ComposableArchitecture
 import Core
 import Logged
+import Network
 import os.log
 import Unlogged
 
@@ -11,6 +12,7 @@ public extension Entry {
             switch action {
             case .onAppear:
                 if !state.isInitialized {
+                    NetworkManager.initialize()
                     state.isInitialized = true
                     return .none
                 }

@@ -3,7 +3,7 @@ import Core
 import Repos_Repository
 
 public struct ReposServiceKey: DependencyKey {
-    public static var liveValue: ReposService = .mocking()
+    public static var liveValue: ReposService = .live
     #if DEBUG
     public static var testValue: ReposService = .mocking()
     public static var previewValue: ReposService = .mocking()

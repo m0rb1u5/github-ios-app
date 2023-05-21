@@ -52,19 +52,19 @@ public extension UsersService {
         searchUsers: SearchResponse<User> = User.mockSearchUsers()
     ) -> Self {
         .init(
-            listUsers: { request in
+            listUsers: { _ in
                 Just(users)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            getUser: { username in
+            getUser: { _ in
                 Just(user)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            searchUser: { request in
+            searchUser: { _ in
                 Just(searchUsers)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)

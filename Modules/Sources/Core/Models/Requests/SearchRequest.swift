@@ -8,7 +8,7 @@ public struct SearchRequest: Equatable, Hashable, Encodable {
     public let page: Int?
 
     public enum CodingKeys: String, CodingKey {
-        case query
+        case query = "q"
         case sort
         case order
         case perPage = "per_page"

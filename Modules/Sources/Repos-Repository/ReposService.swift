@@ -63,25 +63,25 @@ public extension ReposService {
         searchRepos: SearchResponse<Repo> = Repo.mockSearchRepos()
     ) -> Self {
         .init(
-            listRepos: { since in
+            listRepos: { _ in
                 Just(repos)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            listReposForUser: { username, request in
+            listReposForUser: { _, _ in
                 Just(reposForUser)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            getRepo: { owner, repoName in
+            getRepo: { _, _ in
                 Just(repo)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            searchRepo: { request in
+            searchRepo: { _ in
                 Just(searchRepos)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)

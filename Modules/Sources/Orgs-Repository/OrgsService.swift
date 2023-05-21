@@ -52,19 +52,19 @@ public extension OrgsService {
         org: Org = .mock()
     ) -> Self {
         .init(
-            listOrgs: { request in
+            listOrgs: { _ in
                 Just(orgs)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            listOrgsForUser: { username, request in
+            listOrgsForUser: { _, _ in
                 Just(orgsForUser)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)
                     .eraseToAnyPublisher()
             },
-            getOrg: { orgName in
+            getOrg: { _ in
                 Just(org)
                     .delay(for: .seconds(Double.random(in: 0..<1.0)), scheduler: RunLoop.main)
                     .setFailureType(to: GHError.self)

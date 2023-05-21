@@ -52,7 +52,7 @@ public struct GHRepoCard: View {
     @ViewBuilder
     private var bottomInfos: some View {
         HStack(spacing: 16) {
-            if !repo.fork {
+            if repo.fork {
                 GHInfoLabel(
                     style: .card,
                     infos: [L10n.fork],
