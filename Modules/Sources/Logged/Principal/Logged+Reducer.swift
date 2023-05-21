@@ -23,6 +23,9 @@ public extension Logged {
 
             case .users:
                 return .none
+
+            case .repos:
+                return .none
             }
         }
         .ifLet(\.home, action: /Action.home) {
@@ -30,6 +33,9 @@ public extension Logged {
         }
         .ifLet(\.users, action: /Action.users) {
             Users()
+        }
+        .ifLet(\.repos, action: /Action.repos) {
+            Repos()
         }
     }
 }

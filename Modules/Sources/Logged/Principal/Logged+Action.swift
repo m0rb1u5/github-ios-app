@@ -7,5 +7,6 @@ public extension Logged {
         case selectTab(TabBarType)
         case home(Home.Action)
         case users(Users.Action)
+        case repos(Repos.Action)
     }
 }
