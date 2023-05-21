@@ -15,7 +15,7 @@ public struct User: BasicCardProtocol, Equatable, Hashable, Decodable, Identifia
 
     // MARK: - Detail User Properties
     public let company: String?
-    public let blog: URL?
+    public let blog: String?
     public let location: String?
     public let hireable: Bool?
     public let bio: String?
@@ -96,7 +96,7 @@ public struct User: BasicCardProtocol, Equatable, Hashable, Decodable, Identifia
         type: String,
         siteAdmin: Bool,
         company: String? = nil,
-        blog: URL? = nil,
+        blog: String? = nil,
         location: String? = nil,
         hireable: Bool? = nil,
         bio: String? = nil,
@@ -167,7 +167,7 @@ public extension User {
         type: String = "User",
         siteAdmin: Bool = false,
         company: String? = "Linux Foundation",
-        blog: URL? = nil,
+        blog: String? = nil,
         location: String? = "Portland, OR",
         hireable: Bool? = nil,
         bio: String? = nil,

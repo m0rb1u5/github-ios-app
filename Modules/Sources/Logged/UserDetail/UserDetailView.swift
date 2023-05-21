@@ -78,7 +78,6 @@ public struct UserDetailView: View {
     @ViewBuilder
     private func headerSection(_ user: User) -> some View {
         GHSection(
-            header: user.title,
             hasSeeAllButton: false
         ) {
             GHDescriptionCard(
@@ -102,13 +101,7 @@ public struct UserDetailView: View {
                             icon: Image(systemSymbol: .location)
                         )
                     }
-                    if let twitterUsername: String = user.twitterUsername {
-                        GHInfoLabel(
-                            style: .modal,
-                            infos: [twitterUsername],
-                            icon: Asset.Images.twitter.swiftUIImage
-                        )
-                    }
+                    accountsInfo(user)
                     if let followers: Int = user.followers {
                         GHInfoLabel(
                             style: .modal,
@@ -123,10 +116,35 @@ public struct UserDetailView: View {
                             icon: Image(systemSymbol: .person)
                         )
                     }
+                    if let hireable: Bool = user.hireable {
+                        GHInfoLabel(
+                            style: .modal,
+                            infos: ["Hireable"],
+                            icon: Image(systemSymbol: hireable ? .checkmark : .xmark)
+                        )
+                    }
                     repoCountInfo(user)
                     dateInfo(user)
                 }
             }
+        }
+    }
+
+    @ViewBuilder
+    private func accountsInfo(_ user: User) -> some View {
+        if let email: String = user.email {
+            GHInfoLabel(
+                style: .modal,
+                infos: [email],
+                icon: Image(systemSymbol: .mail)
+            )
+        }
+        if let twitterUsername: String = user.twitterUsername {
+            GHInfoLabel(
+                style: .modal,
+                infos: [twitterUsername],
+                icon: Asset.Images.twitter.swiftUIImage
+            )
         }
     }
 
@@ -174,36 +192,55 @@ public struct UserDetailView: View {
         if let createdAt: Date = user.createdAt {
             GHInfoLabel(
                 style: .modal,
-                infos: [createdAt.formatTime() + " created"],
-                icon: Image(systemSymbol: .clock)
+                infos: [createdAt.formatTime()],
+                icon: Image(systemSymbol: .play)
             )
         }
         if let updatedAt: Date = user.updatedAt {
             GHInfoLabel(
                 style: .modal,
-                infos: [updatedAt.formatTime() + " updated"],
-                icon: Image(systemSymbol: .clock)
+                infos: [updatedAt.formatTime()],
+                icon: Image(systemSymbol: .sdcard)
             )
         }
     }
 
     @ViewBuilder
     private func bioSection(_ user: User) -> some View {
-        if let bio: String = user.bio, !bio.isEmpty {
+        if showBioSection(user) {
             GHSection(
-                header: "Biography",
+                header: "Blog and Biography",
                 hasSeeAllButton: false
             ) {
-                VStack(spacing: .zero) {
-                    Text(LocalizedStringKey(bio))
-                        .foregroundColor(Asset.Colors.textPrimary.swiftUIColor)
-                        .font(FontFamily.Roboto.regular.swiftUIFont(size: 18))
-                        .multilineTextAlignment(.leading)
+                VStack(alignment: .leading, spacing: 16) {
+                    if let blog: String = user.blog, !blog.isEmpty {
+                        GHInfoLabel(
+                            style: .modal,
+                            infos: ["[\(blog)](\(blog))"],
+                            icon: Image(systemSymbol: .doc)
+                        )
+                    }
+                    if let bio: String = user.bio, !bio.isEmpty {
+                        Text(LocalizedStringKey(bio))
+                            .foregroundColor(Asset.Colors.textPrimary.swiftUIColor)
+                            .font(FontFamily.Roboto.regular.swiftUIFont(size: 18))
+                            .multilineTextAlignment(.leading)
+                    }
                 }
             }
         } else {
             EmptyView()
         }
+    }
+
+    private func showBioSection(_ user: User) -> Bool {
+        if let bio: String = user.bio, !bio.isEmpty {
+            return true
+        }
+        if let blog: String = user.blog, !blog.isEmpty {
+            return true
+        }
+        return false
     }
 }
 
