@@ -78,7 +78,7 @@ For this project, I applied modularization for the different advantages (build t
 
 We used dependency injection in this project because was necessary to use mock data simulating network connection. For that reason we used the default dependency injection of the TCA architecture: [Swift Dependencies](https://github.com/pointfreeco/swift-dependencies). Also with this package we can have dependency injection for the test and the previews in SwiftUI. Another advantage was when I implemented the Network module, it was easy to change the injection from **mockingz** to **live**.
 
-![Dependency Injection](.img/dependency-injection.png')
+![Dependency Injection](.img/16.png')
 
 For example, with failing injection we have the next screen:
 
