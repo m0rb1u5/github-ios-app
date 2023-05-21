@@ -56,6 +56,7 @@ public struct UserDetailView: View {
                     headerSection(user)
                     infoSection(user)
                     bioSection(user)
+                    shareSection(user)
                     orgsSection
                     reposSection
                 }
@@ -84,6 +85,20 @@ public struct UserDetailView: View {
         ) {
             GHDescriptionCard(
                 model: user
+            )
+        }
+    }
+
+    @ViewBuilder
+    private func shareSection(_ user: User) -> some View {
+        GHSection(
+            hasSeeAllButton: false
+        ) {
+            ShareLink(item: user.htmlUrl)
+            .buttonStyle(
+                GHButtonStyle(
+                    style: .primary
+                )
             )
         }
     }
