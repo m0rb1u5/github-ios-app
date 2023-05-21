@@ -6,5 +6,6 @@ public extension Logged {
         case onAppear
         case selectTab(TabBarType)
         case home(Home.Action)
+        case users(Users.Action)
     }
 }

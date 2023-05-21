@@ -51,13 +51,19 @@ public struct LoggedView: View {
                 homeView
 
             case .users:
-                GHUnderConstructionScreen() // TODO: To implement in the future
+                NavigationStack {
+                    usersView
+                }
 
             case .repos:
-                GHUnderConstructionScreen() // TODO: To implement in the future
+                NavigationStack {
+                    GHUnderConstructionScreen() // TODO: To implement in the future
+                }
 
             case .orgs:
-                GHUnderConstructionScreen() // TODO: To implement in the future
+                NavigationStack {
+                    GHUnderConstructionScreen() // TODO: To implement in the future
+                }
 
             case .profile:
                 GHUnderConstructionScreen() // TODO: To implement in the future
@@ -73,6 +79,17 @@ public struct LoggedView: View {
                 action: Logged.Action.home
             ),
             then: HomeView.init(store:)
+        )
+    }
+
+    @ViewBuilder
+    private var usersView: some View {
+        IfLetStore(
+            store.scope(
+                state: \.users,
+                action: Logged.Action.users
+            ),
+            then: UsersView.init(store:)
         )
     }
 }

@@ -3,7 +3,7 @@ import Core
 import CoreUI
 import SwiftUI
 
-// swiftlint:disable type_body_length file_length
+// swiftlint:disable type_body_length
 public struct HomeView: View {
     let store: StoreOf<Home>
 
@@ -58,7 +58,8 @@ public struct HomeView: View {
                 .scaledToFit()
                 .frame(height: 28)
                 .foregroundColor(Asset.Colors.textSecondary.swiftUIColor)
-        }    }
+        }
+    }
 
     @ViewBuilder
     private var content: some View {
@@ -206,4 +207,4 @@ public struct HomeView_Previews: PreviewProvider {
     }
 }
 #endif
-// swiftlint:enable type_body_length file_length
+// swiftlint:enable type_body_length

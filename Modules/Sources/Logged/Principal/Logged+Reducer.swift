@@ -20,10 +20,16 @@ public extension Logged {
 
             case .home:
                 return .none
+
+            case .users:
+                return .none
             }
         }
         .ifLet(\.home, action: /Action.home) {
             Home()
+        }
+        .ifLet(\.users, action: /Action.users) {
+            Users()
         }
     }
 }
