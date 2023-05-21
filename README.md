@@ -8,38 +8,38 @@
 ![Splash Screen](.img/2.png)
 
 #### Home Screen
-![Home Screen](img/.3.png)
+![Home Screen](.img/3.png)
 
 #### Users Screen
-![User Screen](img/.4.png)
+![User Screen](.img/4.png)
 
 #### Users Screen: Searching
-![User Screen Searching](img/.13.png)
+![User Screen Searching](.img/13.png)
 
 #### Repositories Screen
-![Repositories Screen](img/.5.png)
+![Repositories Screen](.img/5.png)
 
 #### Repositories Screen: Searching
-![Repositories Screen Searching](img/.14.png)
+![Repositories Screen Searching](.img/14.png)
 
 #### Organizations Screen
-![Organizations Screen](img/.6.png)
+![Organizations Screen](.img/6.png)
 
 #### Profile Screen (able to implement in the future)
-![Profile Screen](img/.7.png)
+![Profile Screen](.img/7.png)
 
 #### User Detail Screen
-![User Detail Screen](img/.8.png)
+![User Detail Screen](.img/.8.png)
 
 #### Repositories and Organizatoins in the User Detail Screen
-![Repositories and Organizatoins in the User Detail Screen](img/.9.png)
+![Repositories and Organizatoins in the User Detail Screen](.img/9.png)
 
 ### Share link
-![Share link](img/.10.png)
+![Share link](.img/10.png)
 
 ### Support to Light Mode
-![Support to Light Mode 1](img/.11.png)
-![Support to Light Mode 2](img/.12.png)
+![Support to Light Mode 1](.img/11.png)
+![Support to Light Mode 2](.img/12.png)
 
 ### Tools
 
