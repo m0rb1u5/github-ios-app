@@ -29,7 +29,7 @@
 ![Profile Screen](.img/7.png)
 
 #### User Detail Screen
-![User Detail Screen](.img/.8.png)
+![User Detail Screen](.img/8.png)
 
 #### Repositories and Organizatoins in the User Detail Screen
 ![Repositories and Organizatoins in the User Detail Screen](.img/9.png)
