@@ -339,5 +339,9 @@ public extension Repo {
             )
         ]
     }
+
+    static func mockSearchRepos() -> SearchResponse<Repo> {
+        .init(totalCount: Repo.mockRepos().count, incompleteResults: false, items: Repo.mockRepos())
+    }
 }
 #endif

@@ -265,5 +265,9 @@ public extension User {
             )
         ]
     }
+
+    static func mockSearchUsers() -> SearchResponse<User> {
+        .init(totalCount: User.mockUsers().count, incompleteResults: false, items: User.mockUsers())
+    }
 }
 #endif
