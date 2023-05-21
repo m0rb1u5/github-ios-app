@@ -25,12 +25,7 @@ let package = Package(
                 "CoreUI",
                 "Entry",
                 "Logged",
-                "Unlogged",
-                "Home",
-                "Users",
-                "Repos",
-                "Orgs",
-                "Profile"
+                "Unlogged"
             ]
         ),
     ],
@@ -211,23 +206,6 @@ let package = Package(
         .target(
             name: "Logged",
             dependencies: [
-                "Home",
-                "Users",
-                "Repos",
-                "Orgs",
-                "Profile"
-            ]
-        ),
-        .testTarget(
-            name: "LoggedTests",
-            dependencies: [
-                "Logged"
-            ]
-        ),
-
-        .target(
-            name: "Home",
-            dependencies: [
                 "CoreUI",
                 "Users-Repository-Live",
                 "Repos-Repository-Live",
@@ -235,64 +213,9 @@ let package = Package(
             ]
         ),
         .testTarget(
-            name: "HomeTests",
+            name: "LoggedTests",
             dependencies: [
-                "Home"
-            ]
-        ),
-
-        .target(
-            name: "Users",
-            dependencies: [
-                "CoreUI",
-                "Users-Repository-Live"
-            ]
-        ),
-        .testTarget(
-            name: "UsersTests",
-            dependencies: [
-                "Users"
-            ]
-        ),
-
-        .target(
-            name: "Repos",
-            dependencies: [
-                "CoreUI",
-                "Repos-Repository-Live"
-            ]
-        ),
-        .testTarget(
-            name: "ReposTests",
-            dependencies: [
-                "Repos"
-            ]
-        ),
-
-        .target(
-            name: "Orgs",
-            dependencies: [
-                "CoreUI",
-                "Orgs-Repository-Live"
-            ]
-        ),
-        .testTarget(
-            name: "OrgsTests",
-            dependencies: [
-                "Orgs"
-            ]
-        ),
-
-        .target(
-            name: "Profile",
-            dependencies: [
-                "CoreUI"
-            ]
-        ),
-        .testTarget(
-            name: "ProfileTests",
-            dependencies: [
-                "Profile"
+                "Logged"
             ]
         ),
     ]

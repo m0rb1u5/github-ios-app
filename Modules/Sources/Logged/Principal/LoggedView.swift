@@ -1,7 +1,6 @@
 import ComposableArchitecture
 import Core
 import CoreUI
-import Home
 import SwiftUI
 
 public struct LoggedView: View {
