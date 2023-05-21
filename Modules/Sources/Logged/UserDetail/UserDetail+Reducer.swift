@@ -10,7 +10,8 @@ public extension UserDetail {
             case .onAppear:
                 return .merge([
                     .init(value: .fetchUser),
-                    .init(value: .fetchRepos)
+                    .init(value: .fetchRepos),
+                    .init(value: .fetchOrgs)
                 ])
 
             case .fetchUser:
@@ -50,6 +51,22 @@ public extension UserDetail {
             case let .handleRepos(.failure(error)):
                 state.repos = .error(error)
                 return .init(value: .logError(error))
+
+            case .fetchOrgs:
+                state.orgs = .loading
+                return orgsService
+                    .listOrgsForUser(state.username, .init(perPage: 20, page: 1))
+                    .catchToEffect()
+                    .map(UserDetail.Action.handleOrgs)
+
+            case let .handleOrgs(.success(orgs)):
+                state.orgs = .loaded(orgs)
+                return .none
+
+            case let .handleOrgs(.failure(error)):
+                state.orgs = .error(error)
+                return .init(value: .logError(error))
+
 
             case let .logError(error):
                 Logger(subsystem: "UserDetail", category: "Service").error("\(error.errorDescription ?? "")")

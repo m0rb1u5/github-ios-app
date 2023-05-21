@@ -8,6 +8,8 @@ public extension UserDetail {
         case handleUser(Result<User, GHError>)
         case fetchRepos
         case handleRepos(Result<[Repo], GHError>)
+        case fetchOrgs
+        case handleOrgs(Result<[Org], GHError>)
         case logError(GHError)
         /*case eventSelected(Event)
         case presentEventDetail(Bool)

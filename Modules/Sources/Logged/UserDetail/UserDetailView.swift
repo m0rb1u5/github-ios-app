@@ -56,6 +56,7 @@ public struct UserDetailView: View {
                     headerSection(user)
                     infoSection(user)
                     bioSection(user)
+                    orgsSection
                     reposSection
                 }
                 .padding(.bottom, 16)
@@ -235,19 +236,60 @@ public struct UserDetailView: View {
     }
 
     @ViewBuilder
+    private var orgsSection: some View {
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            GHSection(
+                header: L10n.orgsTitle,
+                hasSeeAllButton: false
+            ) {
+                GHRequestScreen(state: viewStore.orgs) { orgs in
+                    LazyVStack(spacing: .zero) {
+                        if orgs.isEmpty {
+                            HStack {
+                                Text("-")
+                                    .foregroundColor(Asset.Colors.textPrimary.swiftUIColor)
+                                    .font(FontFamily.Roboto.regular.swiftUIFont(size: 16))
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }
+                        } else {
+                            ForEach(orgs, id: \.self) { org in
+                                GHRowCard(
+                                    model: org,
+                                    icon: Image(systemSymbol: .building2Fill)
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
     private var reposSection: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHSection(
-                header: "Repositories",
+                header: L10n.reposTitle,
                 hasSeeAllButton: false
             ) {
                 GHRequestScreen(state: viewStore.repos) { repos in
                     LazyVStack(spacing: .zero) {
-                        ForEach(repos, id: \.self) { repo in
-                            GHRowCard(
-                                model: repo,
-                                icon: Image(systemSymbol: .shippingboxFill)
-                            )
+                        if repos.isEmpty {
+                            HStack {
+                                Text("-")
+                                    .foregroundColor(Asset.Colors.textPrimary.swiftUIColor)
+                                    .font(FontFamily.Roboto.regular.swiftUIFont(size: 16))
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }
+                        } else {
+                            ForEach(repos, id: \.self) { repo in
+                                GHRowCard(
+                                    model: repo,
+                                    icon: Image(systemSymbol: .shippingboxFill)
+                                )
+                            }
                         }
                     }
                 }
