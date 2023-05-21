@@ -37,7 +37,7 @@ public extension UserDetail {
                             type: .all,
                             sort: .updated,
                             direction: .asc,
-                            perPage: 20,
+                            perPage: 100,
                             page: 1
                         )
                     )
@@ -55,7 +55,7 @@ public extension UserDetail {
             case .fetchOrgs:
                 state.orgs = .loading
                 return orgsService
-                    .listOrgsForUser(state.username, .init(perPage: 20, page: 1))
+                    .listOrgsForUser(state.username, .init(perPage: 100, page: 1))
                     .catchToEffect()
                     .map(UserDetail.Action.handleOrgs)
 
@@ -66,7 +66,6 @@ public extension UserDetail {
             case let .handleOrgs(.failure(error)):
                 state.orgs = .error(error)
                 return .init(value: .logError(error))
-
 
             case let .logError(error):
                 Logger(subsystem: "UserDetail", category: "Service").error("\(error.errorDescription ?? "")")
