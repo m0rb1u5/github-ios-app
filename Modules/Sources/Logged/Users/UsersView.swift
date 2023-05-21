@@ -39,7 +39,7 @@ public struct UsersView: View {
     private var content: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHRequestScreen(state: viewStore.users) { users in
-                VStack(spacing: .zero) {
+                LazyVStack(spacing: .zero) {
                     ForEach(users, id: \.self) { user in
                         Button(
                             action: { viewStore.send(.userSelected(user)) },

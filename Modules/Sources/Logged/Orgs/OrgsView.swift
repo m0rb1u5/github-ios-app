@@ -48,7 +48,7 @@ public struct OrgsView: View {
     private var content: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHRequestScreen(state: viewStore.orgs) { orgs in
-                VStack(spacing: .zero) {
+                LazyVStack(spacing: .zero) {
                     ForEach(orgs, id: \.self) { org in
                         Button(
                             action: { },//viewStore.send(.eventSelected(event)) },

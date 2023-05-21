@@ -48,7 +48,7 @@ public struct ReposView: View {
     private var content: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             GHRequestScreen(state: viewStore.repos) { repos in
-                VStack(spacing: .zero) {
+                LazyVStack(spacing: .zero) {
                     ForEach(repos, id: \.self) { repo in
                         Button(
                             action: { },//viewStore.send(.eventSelected(event)) },
